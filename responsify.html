@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+ul,p{
+    margin-top: 16px;
+}
+figure{
+    width: 100%;
+}
+    figure img{
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+<section class="wrap">
+<h2 class="title">responsify.js</h2>
+<p>レスポンシブの時に画像のフォーカスポイントを決めれるプラグイン</p>
+<ul>
+    <li>参考URL : <a href="http://coliss.com/articles/build-websites/operation/javascript/jquery-plugin-responsifyjs.html">http://coliss.com/articles/build-websites/operation/javascript/jquery-plugin-responsifyjs.html</a></li>
+</ul>
+
+<h2 class="title">使い方</h2>
+<p>画像に対してdata属性をセットし、フォーカスポイントを決める。</p>
+<p>data-focus-left、data-focus-right、data-focus-top、data-focus-bottomが設定可能。</p>
+<p>「data-focus-○○」は小数点で設定し、画像のフルの幅に対するフォーカスエリアの左の位置です。例えば画像のサイズが300pxで、フォーカスエリアが左から90pxにしたい場合は「90/300=0.3」に設定します。top, right, bottomも同様の仕組みです。</p>
+<p>$('img').responsify();という形でjsを記述する。</p>
+
+
+
+<figure>
+    <img src="img/a.jpg" alt="" data-focus-left=".30" data-focus-top=".12" data-focus-right=".79" data-focus-bottom=".66">
+    <figcaption>このサンプルはdata-focus-left=".30" data-focus-top=".12" data-focus-right=".79" data-focus-bottom=".66"</figcaption>
+</figure>
+
+</section>
+<!--
+<figure>
+    <img src="img/a.jpg" alt="" data-focus-left=".30" data-focus-top=".12" data-focus-right=".79" data-focus-bottom=".66">
+    <figcaption>explanatory caption</figcaption>
+</figure>
+-->
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="./js/responsify.js"></script>
+<script>
+
+$(window).load(function() {
+  $('img').responsify();
+});
+$(window).resize(function(){
+  $('img').responsify();
+})
+</script>
+</body>
+</html>

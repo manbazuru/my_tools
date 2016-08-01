@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+p,ul{
+    margin-top: 16px;
+}
+.contents{
+    width: 100%;
+    height: 200px;
+    line-height: 200px;
+    margin-top: 48px;
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+<section class="wrap">
+<h2 class="title">flowup.js</h2>
+<p>スクロールした時にいい感じにコンテンツがついてくるプラグイン</p>
+<ul>
+<li>参考URL : <a href="http://coliss.com/articles/build-websites/operation/javascript/jquery-plugin-flow-up.html">http://coliss.com/articles/build-websites/operation/javascript/jquery-plugin-flow-up.html</a></li>
+<li>公式URL：<a href="http://www.dominikgorecki.com/download/flow-up/">http://www.dominikgorecki.com/download/flow-up/</a></li>
+</ul>
+
+<h2 class="title">使い方</h2>
+<pre>
+$(document).ready(function() {
+    $("CONTAINER-SELECTOR").flowUp("FLOW-UP-ELEMENTS-SELECTOR");
+ });
+</pre>  
+<p>これだけ。</p>
+
+<p>オプションで、遅れる時のY軸やタイミングが設定が可能。</p>
+<pre>
+$(document).ready(function() {
+    $("CONTAINER-SELECTOR").flowUp("FLOW-UP-ELEMENTS-SELECTOR", { transalteY: 350, duration: 1 });
+ });
+</pre> 
+</section>
+
+<div class="test">
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+    <p class="contents">CONTENTS</p>
+</div>
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="./js/flowup.js"></script>
+<script>
+var colors = ['orange','lightgray','gray','slategray','CadetBlue','CornflowerBlue','lightpink','Tomato','Tan','Turquoise'];
+$('.contents').each(function(i) {
+    $('.contents').eq(i).css('background-color',colors[i]);
+});
+
+
+$(document).ready(function() {
+    $(".test").flowUp(".contents",{ transalteY: 350, duration: 1 });
+ });
+</script>
+</body>
+</html>

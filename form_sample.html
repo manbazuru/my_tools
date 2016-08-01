@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+/*RESET*/
+body,p{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+p,input,div{
+	margin: 0;
+}
+input{
+	outline:none;
+}
+
+/*STYLE*/
+.text{
+	margin:80px 0 0 100px;
+	position:relative;
+}
+.text > p{
+	background-color:white;
+	color:#ccc;
+	line-height:1;
+	font-size:0.8em;
+	padding:0 5px;
+	position:absolute;
+	top:50%;
+	left:15px;
+	-ms-transform:translateY(-50%);
+	transform:translateY(-50%);
+	z-index:-999;
+}
+input[type = "text"]{
+	width:450px;
+	height:3em;
+	padding:0 5px 0 10px;
+	background-color:transparent;
+	border:1px solid #ccc;
+	color:#5a5a5a;
+}
+
+.text + .text{
+	margin-top:32px;
+}
+
+input[type = "submit"]{
+	margin:24px 0 0 100px;
+	padding:10px 40px;
+	background-color:orange;
+	border:1px solid orange;
+	box-sizing:border-box;
+	color:white;
+	cursor:pointer;
+	transition:opacity 0.3s;
+}
+	input[type = "submit"]:hover{
+		opacity:0.7;
+	}
+</style>
+</head>
+<body>
+<form>
+	<div class="text">
+		<p>NAME</p>
+		<input type="text">
+	</div>
+
+	<div class="text">
+		<p>MAIL</p>
+		<input type="text">
+	</div>
+
+	<div class="text">
+		<p>PHONE</p>
+		<input type="text">
+	</div>
+	<input type="submit" value="SEND">
+</form>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+var val;
+
+$("input[type = 'text']").each(function(){
+	val = $(this).val();
+	
+	if(val){
+		$(this).css("border-color","orange");
+		$(this).siblings("p").css({"top":"0","left":"10px","color":"orange","font-weight":"bold","z-index":1});
+	}
+
+	$(this).on({
+		"focus" : function(){
+			$(this).css("border-color","orange");
+			
+			$(this).siblings("p")
+				.stop()
+				.animate({"top":"0","left":"10px"},400)
+				.css({"color":"orange","font-weight":"bold","z-index":1});
+		},
+
+		"blur" : function(){
+			val = $(this).val();
+			
+			if(!val){
+				$(this).css("border-color","#ccc");
+				$(this).siblings("p")
+				.stop()
+				.animate({"top":"50%","left":"15px"},400,function(){
+					$(this).css("z-index",-999);
+				})
+				.css({"color":"#ccc","font-weight":"inherit"});
+			}
+			else{
+				return false;
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>

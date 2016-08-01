@@ -1,0 +1,103 @@
+# sass
+.sass-cache
+
+# node
+*.log
+npm-debug.log*
+pids
+*.pid
+*.seed
+lib-cov
+coverage
+.grunt
+.lock-wscript
+build
+node_modules
+
+#Vagrant
+.vagrant
+*/boxes/*.box
+
+# netbeans
+nbproject
+
+# visual studio code
+.vscode
+
+# sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+sftp-config.json
+.sublime-gulp.cache
+
+# jetbeans
+.idea*
+*.ipr
+*.iws
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# osx
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# wordpress
+www/wordpress/wp-admin/
+www/wordpress/wp-includes/
+www/wordpress/index.php
+www/wordpress/license.txt
+www/wordpress/readme-ja.html
+www/wordpress/readme.html
+www/wordpress/wp-*.php
+www/wordpress/xmlrpc.php
+www/wordpress/wp-content/*
+!www/wordpress/wp-content/plugins/
+!www/wordpress/wp-content/themes/
+www/wordpress/wp-content/themes/*
+!www/wordpress/wp-content/themes/themeName/
+
+# other
+/www/var/cache/*
+/www/var/logs/*
+/www/var/session/*
+/www/var/tmp/*
+!/www/var/cache/.gitkeep
+!/www/var/logs/.gitkeep
+!/www/var/session/.gitkeep
+!/www/var/tmp/.gitkeep
+
+/vagrant/nodes/vagrant*.json

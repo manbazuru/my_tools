@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>particle-background使い方</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+header{
+    width: 100%; max-width: 100%;
+    height: 450px;
+    background: url(http://lorempixel.com/900/400/city) no-repeat 0 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-color: #eee;
+}
+</style>
+</head>
+
+<body>
+<header>
+</header>
+<div class="wrap">
+    <section class="des">
+        <h2>particle-background 使い方</h2>
+        <ul>
+            <li>particleground.min.jsを読み込む</li>
+            <li>divに適当なクラス名をつける。←これがトリガーになる</li>
+            <li>$('#your-element').particleground();でOK</li>
+        </ul>
+    </section>
+
+    <section class="des">
+        <h2>特徴</h2>
+        <ul>
+            <li>面倒なパーティクル背景が簡単に実装できる</li>
+            <li>スタート、ストップなどのapiが用意されている</li>
+            <li>ラインの色やパーティクルの数、スピードなどのオプションが豊富</li>
+        </ul>
+<pre>
+SAMPLE
+=========================
+$('header').particleground({
+    dotColor : 'rgba(255,255,255,.4)',
+    lineColor : 'rgba(255,255,255,.4)',
+    particleRadius : 5,
+    proximity : 120,
+    parallax : false
+});
+
+OPTIONS
+=========================
+minSpeedX
+0.1
+
+maxSpeedX
+0.7
+
+minSpeedY
+0.1
+
+maxSpeedY
+0.7
+
+directionX
+'center'
+Can be one of 'center', 'left' or 'right'. 'center' means that the dots will bounce off the edges of the canvas.
+
+directionY
+'center'
+Can be one of 'center', 'up' or 'down'. 'center' means that the dots will bounce off the edges of the canvas.
+
+density
+10000
+Determines how many particles will be generated: one particle every n pixels.
+
+dotColor
+'#666666'
+
+lineColor
+'#666666'
+
+particleRadius
+7
+Dot size
+
+lineWidth
+1
+
+curvedLines
+false
+
+proximity
+100
+How close two dots need to be, in pixels, before they join.
+
+parallax
+true
+
+parallaxMultiplier
+5
+The lower the number, the more extreme the parallax effect wil be.
+
+onInit
+function() {}
+A callback executed after Particleground initializes.
+
+onDestroy
+function() {}
+A callback executed after Particleground is destroyed.
+
+
+METHODS
+=========================
+pause()
+Pauses the particle system.
+
+start()
+Restarts the particle system if you previously paused it.
+
+destroy()
+Removes the plugin from your element.
+</pre>
+    </section>
+</div>
+
+<section class="pt">
+</section>
+
+<footer>
+    <p>参考リンク</p>
+    <ul>
+        <li><a href="https://github.com/jnicol/particleground" target="_blank">github開発者ページ</a></li>
+        <li><a href="http://jnicol.github.io/particleground/" target="_blank">demoページ</a></li>
+    </ul>
+</footer>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="./js/particleground.min.js"></script>
+<script>
+$('header').particleground({
+    dotColor : 'rgba(255,255,255,.4)',
+    lineColor : 'rgba(255,255,255,.4)',
+    particleRadius : 5,
+    proximity : 120,
+    parallax : false
+});
+</script>
+</body>
+</html>

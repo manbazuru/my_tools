@@ -1,0 +1,213 @@
+// mediaquery
+$widthTab: 768px; //タブレット
+$widthSp: 568px; //スマートフォン
+
+@mixin sp {
+  //$widthTab-1（767px）以下の場合
+  @media (max-width: ($widthTab - 1)) {
+    @content;
+  }
+}
+
+// ASSETS
+$green : #a0e0e2;
+$blue : #435068;
+
+// RESET
+body,h1,h2,h3,p{
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+img{
+  vertical-align: bottom;
+}
+
+// GLOBAL STYLE
+html{
+  font-size: 14px;
+}
+
+// carr
+.carr{
+  width: 100%;
+  margin: 80px auto 0;
+  background-color: $green;
+
+  &-wrap{
+    width: 100%; max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &-contents{
+    padding: 100px 0 160px;
+    @include sp {padding: 40px 0 100px;};
+
+    &-icon{
+      text-align: center;
+
+      .webicon{
+        width: 60px;
+        color: $blue;
+      }
+    }
+
+    &-title{
+      color: $blue;
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    &-description{
+      color: $blue;
+      line-height: 2;
+      margin-top: 32px;
+      text-align: center;
+      @include sp {width: 70%; margin: 40px auto 0; text-align: left;};
+    }
+  }
+
+  &-btn  {
+    width: 100%;
+    margin: 0;
+
+    .icon{
+      width: 20px;
+      color: white;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &-left{
+        left: 16px;
+      }
+      &-right{
+        right: 16px;
+      }
+    }
+  }
+
+  &-pager{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    &-wrap{
+      display: flex;
+      position: absolute;
+      bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &-item{
+      width: 6px;
+      height: 6px;
+      background-color: #fff;
+      border-radius: 50%;
+      margin-left: 16px;
+      opacity: .8;
+
+      &:first-child{
+        margin-left: 0;
+      }
+    }
+
+    ._on{
+      background-color: $blue;
+      opacity: 1;
+      transform : scale(1.6);
+      transition : .5s;
+    }
+  }
+
+  .anime-icon{
+    animation: icon .8s;
+  }
+  .anime-icon-clone{
+    animation: icon-clone .8s;
+  }
+  .anime-title{
+    animation: title .8s .1s;
+  }
+  .anime-title-clone{
+    animation: title-clone .8s .1s;
+  }
+  .anime-description{
+    animation: description .8s .2s;
+  }
+  .anime-description-clone{
+    animation: description-clone .8s .2s;
+  }
+}
+
+@keyframes icon{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  20%{opacity : 0;}
+  30%{transform : translateY(-20px)}
+  40%{transform : translateY(-20px)}
+  40%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+@keyframes icon-clone{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  20%{opacity : 0;}
+  30%{transform : translateY(-20px)}
+  40%{transform : translateY(-20px)}
+  40%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+@keyframes title{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  30%{opacity : 0;}
+  40%{transform : translateY(-20px)}
+  50%{transform : translateY(-20px)}
+  50%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+@keyframes title-clone{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  30%{opacity : 0;}
+  40%{transform : translateY(-20px)}
+  50%{transform : translateY(-20px)}
+  50%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+@keyframes description{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  50%{opacity : 0;}
+  50%{transform : translateY(-20px)}
+  70%{transform : translateY(-20px)}
+  70%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+@keyframes description-clone{
+  0%{opacity : 1;}
+  0%{transform : translateY(0)}
+  50%{opacity : 0;}
+  50%{transform : translateY(-20px)}
+  70%{transform : translateY(-20px)}
+  70%{opacity : 0;}
+  100%{transform : translateY(0)}
+  100%{opacity : 1;}
+}
+
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+.test1 p{
+  position: relative;
+  padding: 20px;
+}
+.test1 p:after{
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.7) 20%, rgba(255,255,255,1) 80%);
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  z-index: 2;
+}
+
+.test2 p {
+  padding: 20px;
+  position: relative;
+}
+.test2 p:after {
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.7) 20%, rgba(255,255,255,1) 80%);
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  transition: all .3s;
+  z-index: 2;
+}
+.test2 p:hover:after {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.box {
+  border: 5px solid transparent;
+  background-image: linear-gradient(#e55d87, #5fc3e4);
+  background-origin: border-box;
+}
+.box div {
+  height: 200px;
+  background-color: #fff;
+}
+
+.border01 {
+  height: 1px;
+  background-image: linear-gradient(90deg, #000, #000 50%, transparent 50%, transparent 100%);
+  background-size: 10px 1px;
+  border: none;
+  margin-top: 16px;
+}
+.border02 {
+  height: 1px;
+  background-image: linear-gradient(90deg, #000, #000 75%, transparent 75%, transparent 100%);
+  background-size: 20px 1px;
+  border: none;
+  margin-top: 16px;
+}
+.border03 {
+  height: 1px;
+  background-image: linear-gradient(90deg, transparent, transparent 50%, #fff 50%, #fff 100%), linear-gradient(90deg, #e55d87, #5fc3e4);
+  background-size: 10px 1px, 100% 1px;
+  border: none;
+  margin-top: 16px;
+}
+.border04 {
+  height: 3px;
+  background-image: linear-gradient(90deg, transparent, transparent 50%, #fff 50%, #fff 100%), linear-gradient(90deg, #69d2e7, #a7dbd8, #e0e4cc, #f38630, #fa6900);
+  background-size: 10px 3px, 100% 3px;
+  border: none;
+  margin-top: 16px;
+}
+
+</style>
+<body>
+<section class="test1">
+  <h2>1. テキストが徐々に見えなくなる</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+  </p>
+<pre>
+p {
+  position: relative;
+  padding: 20px;
+}
+p::after {
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.7) 20%, rgba(255,255,255,1) 80%);
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  z-index: 2;
+}
+</pre>
+</section>
+
+<section class="test2">
+  <h2>2. テキストが徐々に見えなくなる(ホバーで見えるバージョン)</h2>
+  <p>つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。（Wikipediaより）つれづれなるまゝに
+  </p>
+<pre>
+p {
+  padding: 20px;
+  position: relative;
+}
+p:after {
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(rgba(255,255,255,0) 0, rgba(255,255,255,.7) 20%, rgba(255,255,255,1) 80%);
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  transition: all .3s;
+  z-index: 2;
+}
+p:hover:after {
+  opacity: 0;
+  visibility: hidden;
+}
+</pre>
+</section>
+
+<section class="test3">
+  <h2>3. グラデーションのボーダー</h2>
+  <div class="box">
+    <div></div>
+  </div>
+<pre>
+.box {
+  border: 5px solid transparent;
+  background-image: linear-gradient(#e55d87, #5fc3e4);
+  background-origin: border-box;
+}
+.box div {
+  height: 200px;
+  background-color: #fff;
+}
+</pre>
+</section>
+
+<section class="test4">
+  <h2>4. 破線をCSSグラデーションで表現</h2>
+  <p class="border01"></p>
+  <p class="border02"></p>
+  <p class="border03"></p>
+  <p class="border04"></p>
+<pre>
+.border01 {
+  height: 1px;
+  background-image: linear-gradient(90deg, #000, #000 50%, transparent 50%, transparent 100%);
+  background-size: 10px 1px;
+  border: none;
+}
+.border02 {
+  height: 1px;
+  background-image: linear-gradient(90deg, #000, #000 75%, transparent 75%, transparent 100%);
+  background-size: 20px 1px;
+  border: none;
+}
+.border03 {
+  height: 1px;
+  background-image: linear-gradient(90deg, transparent, transparent 50%, #fff 50%, #fff 100%), linear-gradient(90deg, #e55d87, #5fc3e4);
+  background-size: 10px 1px, 100% 1px;
+  border: none;
+}
+.border04 {
+  height: 3px;
+  background-image: linear-gradient(90deg, transparent, transparent 50%, #fff 50%, #fff 100%), linear-gradient(90deg, #69d2e7, #a7dbd8, #e0e4cc, #f38630, #fa6900);
+  background-size: 10px 3px, 100% 3px;
+  border: none;
+}
+</pre>
+</section>
+
+<footer>
+  <p>参考URL</p>
+  <ul>
+    <li><a href="http://www.nxworld.net/tips/design-parts-using-css-gradient.html">http://www.nxworld.net/tips/design-parts-using-css-gradient.html</a></li>
+  </ul>
+</footer>
+</body>
+</html>

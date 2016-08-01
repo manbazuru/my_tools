@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>タムカルーセル</title>
+
+<style>
+/*RESET*/
+body,div,ul,li,p{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+img{
+    vertical-align: bottom;
+}
+
+/*STYLE*/
+.carr{
+    width: 100％;
+    min-height: 568px;
+    margin: 100px auto 0;
+    overflow: hidden;
+    position: relative;
+}
+    .carr-visual{
+        position: relative;
+    }
+    .carr-contents{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+        .carr-contents img{
+        }
+
+.carr-btn{}
+    .carr-btn > p{
+        color: #ccc;
+        cursor: pointer;
+        font-size: 2rem;
+        opacity: 0.8;
+        position: absolute;
+        top: 50%;
+        text-shadow: 1px 1px rgba(0,0,0,0.3);
+        transform: translateY(-50%);
+    }
+    .btn-left{
+        left: 50px;
+    }
+    .btn-right{
+        right: 50px;
+    }
+
+.carr-pager{}
+    .carr-pager-wrap{
+        max-width: 1080px;
+        overflow: hidden;
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+    .carr-pager-btn{
+        width: 15px;
+        height: 15px;
+        background-color: transparent;
+        border: 1px solid #a1a1a1;
+        border-radius: 50%;
+        box-sizing: border-box;
+        cursor: pointer;
+        float: left;
+        opacity:0.7;
+        transition: 0.3s;
+    }
+        .carr-pager-btn:hover{
+            background-color: #a1a1a1;
+        }
+
+.carr-pager-on{
+    background-color:#a1a1a1;
+}
+</style>
+</head>
+
+
+
+
+
+<body>
+<div class="carr">
+    <ul class="carr-visual">
+        <li class="carr-contents"><img src="img/carr_1.jpg" alt=""></li>
+        <li class="carr-contents"><img src="img/carr_2.jpg" alt=""></li>
+        <li class="carr-contents"><img src="img/carr_3.jpg" alt=""></li>
+        <li class="carr-contents"><img src="img/carr_4.jpg" alt=""></li>
+        <li class="carr-contents"><img src="img/carr_5.jpg" alt=""></li>
+    </ul>
+
+    <div class="carr-btn">
+        <p class="btn-left"><i class="fa fa-chevron-left"></i></p>
+        <p class="btn-right"><i class="fa fa-chevron-right"></i></p>
+    </div>
+    
+    <div class="carr-pager"></div>
+</div>
+
+
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+// セレクター用変数
+var $carr = $(".carr");
+var $carr_contents = $(".carr-contents");
+var len = $carr_contents.length; // .carr-contentsクラスがついたものがいくつあるのか
+
+
+// 処理用変数
+var fadeSpeed = 1000; // フェードスピード
+var animeSpeed = 8000; // 自動アニメーション切り替え時間
+var animeStart; // アニメーション操作用変数
+var now = 0; // 現在の位置の初期値を設定
+
+
+// 初期設定
+var Init = function(){
+    // 初期値で1番目の画像を表示
+    $carr_contents.first().show();
+
+    // フェードアニメーションをページ読み込み時にスタート
+    animeStart = setInterval(Carr.anime,animeSpeed);
+};
+
+
+// .carrクラスの子供にcarr-pagerクラスがあった場合にページャーを生成
+if($carr.children().hasClass("carr-pager")){
+    var $carr_pager = $(".carr-pager");
+    var space = 20; // ページャー同士の間の空白の値を定義(px)
+
+    // carr-pagerの配下にul.carr-pager-wrapを生成
+    $carr_pager.append("<ul class = 'carr-pager-wrap'>");
+
+    // carr-pager-wrapの配下にcarr-contents(li)の数だけページャーボタン(.carr-pager-btn)を生成
+    for(var i = 0; i < len; i++){
+        $(".carr-pager-wrap").append("<li class = 'carr-pager-btn'>");
+    }
+
+    // ページャーとページャーの間の空白を設定
+    $(".carr-pager-btn + .carr-pager-btn").css("marginLeft", space + "px");
+
+    // 一番目のページャーを選択状態にする(色はCSSの.carr-pager-onの所で設定)
+    $(".carr-pager-btn").first().addClass("carr-pager-on");
+}
+
+
+// カルーセル処理イベント
+$(".btn-left").click(function(){ // 左ボタンイベント
+    Carr.goPrev();
+});
+
+$(".btn-right").click(function(){ // 右ボタンイベント
+    Carr.goNext();
+});
+
+$(".carr-pager-btn").each(function(i){ // ページャーボタンイベント
+    $(this).click(function(){
+        Pager.move(this,i);
+    });
+});
+
+
+// 関数群
+// カルーセル処理用関数
+var Carr = {
+    
+    goPrev : function(){ //左ボタンを押した時の処理
+
+        // ボタン連打で切り替わらないよーにする
+        if($carr_contents.is(":animated")){
+            return false;
+        }
+
+        // ボタンを押した時に自動アニメーションを一旦解除
+        clearInterval(animeStart);
+
+        // 一旦全ての画像をフェードアウト
+        $carr_contents.fadeOut(fadeSpeed);
+        
+        // 最初に定義したnowという変数を基に現在の位置を調整
+        if(now === 0){ // もしnowが0になったら最後の画像に飛ばす(画像枚数以下の要素は存在しないため)
+            now = len - 1;
+        }
+        else{ // それ以外はマイナス1にする(前の画像を表示する)
+            now--;
+        }
+
+        // now番号の画像をフェードイン
+        $carr_contents.eq(now).fadeIn(fadeSpeed);
+
+        // 一旦ページャーの背景色を取り除き、now番号のページャーに背景色をつける
+        $(".carr-pager-btn")
+            .removeClass("carr-pager-on")
+            .eq(now).addClass("carr-pager-on");
+
+        // 上記全ての処理が終わった後に、自動アニメーションを再開
+        animeStart = setInterval(Carr.anime,animeSpeed);
+    },
+
+    goNext : function(){ // 右ボタンを押した時の処理 (左ボタンを押した時と逆の処理のため詳細は割愛)
+        if($carr_contents.is(":animated")){
+            return false;
+        }
+
+        clearInterval(animeStart);
+
+        $carr_contents.fadeOut(fadeSpeed);
+        
+        if(now === len - 1){
+            now = 0;
+        }
+        else{
+            now++;
+        }
+
+        $carr_contents.eq(now).fadeIn(fadeSpeed);
+
+        $(".carr-pager-btn")
+            .removeClass("carr-pager-on")
+            .eq(now).addClass("carr-pager-on");
+
+        animeStart = setInterval(Carr.anime,animeSpeed);
+    },
+
+    anime : function(){ // 自動フェードアニメーション処理(右ボタンを押した時の処理と同じなため詳細は割愛)
+        $carr_contents.fadeOut(fadeSpeed);
+        
+        if(now === len - 1){
+            now = 0;
+        }
+        else{
+            now++;
+        }
+
+        $carr_contents.eq(now).fadeIn(fadeSpeed);
+
+        $(".carr-pager-btn")
+            .removeClass("carr-pager-on")
+            .eq(now).addClass("carr-pager-on");
+    }
+};
+
+// ページャー処理用関数
+var Pager = {
+    move : function(elm,i){
+
+        // ボタン連打で切り替わらないよーにする
+        if($carr_contents.is(":animated")){
+            return false;
+        }
+
+        // ボタンを押した時に自動アニメーションを一旦解除
+        clearInterval(animeStart);
+
+        // 一旦ページャーの背景色を取り除き、押したページャーに背景色をつける
+        $(".carr-pager-btn").removeClass("carr-pager-on");
+        $(elm).addClass("carr-pager-on");
+
+        // 現在位置の連携。now変数で場所を管理しているので、ページャーを押した箇所(今回はi番号)とnowを同じにする
+        now = i;
+
+        // 一旦画像をフェードアウトさせ、now番号の画像をフェードイン
+        $carr_contents.fadeOut(fadeSpeed);
+        $carr_contents.eq(now).fadeIn(fadeSpeed);
+
+        // 上記全ての処理が終わった後に、自動アニメーションを再開
+        animeStart = setInterval(Carr.anime,animeSpeed);
+    }
+};
+
+// 初期設定で設定した項目の開始(最後にしないと読み込めない関数などが出てくるので必ず最後に記載！！)
+Init();
+</script>
+</body>
+</html>

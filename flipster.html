@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipster Test(カルーセル)</title>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/flipster_default.css">
+<style>
+.test{
+    border-top: 1px solid #ccc;
+    margin-top: 48px;
+    padding-top: 48px;
+}
+    .test > h1{
+        text-align: center;
+    }
+    .test > ul{
+        margin-top: 40px;
+    }
+    .test > ul > li{
+        width: 200px;
+        height: 200px;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    .test > ul > li:before{
+        display: none;
+    }
+</style>
+</head>
+
+
+
+<body>
+<div class="wrap">
+    <section class="des">
+        <h1>flipster使い方</h1>
+        <ul>
+            <li>jQueryとflipster.min.jsを読み込む</li>
+            <li>headにflipster_default.cssを読み込む</li>
+            <li>divに適当なクラス名をつける。←これがトリガーになる</li>
+            <li>divの中にul>li>imgという形で画像を入れる</li>
+            <li>jsで$('クラス名').flipster();でOK</li>
+        </ul>
+    </section>
+
+    <section class="des">
+        <h1>特徴</h1>
+        <ul>
+            <li>レスポンシブ対応ギャラリー</li>
+            <li>3つのスタイルから選べる (coverflow or carousel or wheel or flat)</li>
+            <li>carouselはボタンと連動してタブや矢印をつけれる。やり方は<a href="https://github.com/drien/jquery-flipster" target="_blank">githubページ</a>参照</li>
+            <li>豊富なオプション</li>
+        </ul>
+<pre>
+$('.my-flipster').flipster({
+    itemContainer: 'ul',
+    // アイテムのコンテナ
+ 
+    itemSelector: 'li',
+    // アイテムのセレクタ
+ 
+    start: 'center',
+    // アイテムの初期表示
+ 
+    fadeIn: 400,
+    // フェードインのスピード
+ 
+    loop: false,
+    // ループの有無
+ 
+    autoplay: false,
+    // 自動再生の有無
+ 
+    pauseOnHover: true,
+    // 自動再生時のポーズの有無
+ 
+    style: 'coverflow',
+    // スタイル（coverflow|carousel|flat|...）
+ 
+    spacing: -0.6,
+    // アイテム間のスペース
+ 
+    click: true,
+    // アイテムのクリック操作の有無
+ 
+    keyboard: true,
+    // キーボード操作（矢印キー）の有無
+ 
+    scrollwheel: true,
+    // ホイール操作の有無
+ 
+    touch: true,
+    // タッチデバイスのスワイプ操作の有無
+ 
+    nav: false,
+    // ナビゲーションの有無と位置
+ 
+    buttons: false,
+    // ボタンの有無
+ 
+    buttonPrev: 'Previous',
+    // ボタンの文言
+ 
+    buttonNext: 'Next',
+    // ボタンの文言
+ 
+    onItemSwitch: false
+    // アイテムがスイッチした時のコールバック関数
+});
+</pre>
+    </section>
+
+    <section class="des attention">
+        <h1>注意事項</h1>
+        <ul>
+            <li>liの中にimgを設定しないとダメ！backgroundは動かない</li>
+            <li>cssファイルを必ず読み込む！</li>
+        </ul>
+    </section>
+
+    <div class="test my-flipster_one">
+        <h1>type : coverflow</h1>
+        <ul>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+        </ul>
+    </div>
+
+    <div class="test my-flipster_two">
+        <h1>type : carousel</h1>
+        <ul>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+        </ul>
+    </div>
+
+    <div class="test my-flipster_three">
+        <h1>type : wheel</h1>
+        <ul>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+        </ul>
+    </div>
+
+    <div class="test my-flipster_four">
+        <h1>type : flat</h1>
+        <ul>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+            <li><img src="http://placeimg.com/300/300/any"></li>
+        </ul>
+    </div>
+</div>
+<footer>
+    <p>参考リンク</p>
+    <ul>
+        <li><a href="https://github.com/drien/jquery-flipster" target="_blank">github開発者ページ</a></li>
+        <li><a href="http://brokensquare.com/Code/jquery-flipster/demo/" target="_blank">demoページ</a></li>
+    </ul>
+</footer>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="./js/flipster.min.js"></script>
+<script>
+
+$('.my-flipster_one').flipster({
+    scrollwheel: false
+});
+
+$(".my-flipster_two").flipster({
+    style: 'carousel',
+    spacing: -0.5,
+    scrollwheel: false
+});
+
+$(".my-flipster_three").flipster({
+    style: 'wheel',
+    spacing: 0,
+    scrollwheel: false
+});
+
+$(".my-flipster_four").flipster({
+    style: 'flat',
+    spacing: -0.25,
+    scrollwheel: false
+});
+
+/*
+$('.my-flipster').flipster({
+    itemContainer: 'ul',
+    // アイテムのコンテナ
+ 
+    itemSelector: 'li',
+    // アイテムのセレクタ
+ 
+    start: 'center',
+    // アイテムの初期表示
+ 
+    fadeIn: 400,
+    // フェードインのスピード
+ 
+    loop: false,
+    // ループの有無
+ 
+    autoplay: false,
+    // 自動再生の有無
+ 
+    pauseOnHover: true,
+    // 自動再生時のポーズの有無
+ 
+    style: 'coverflow',
+    // スタイル（coverflow|carousel|flat|...）
+ 
+    spacing: -0.6,
+    // アイテム間のスペース
+ 
+    click: true,
+    // アイテムのクリック操作の有無
+ 
+    keyboard: true,
+    // キーボード操作（矢印キー）の有無
+ 
+    scrollwheel: true,
+    // ホイール操作の有無
+ 
+    touch: true,
+    // タッチデバイスのスワイプ操作の有無
+ 
+    nav: false,
+    // ナビゲーションの有無と位置
+ 
+    buttons: false,
+    // ボタンの有無
+ 
+    buttonPrev: 'Previous',
+    // ボタンの文言
+ 
+    buttonNext: 'Next',
+    // ボタンの文言
+ 
+    onItemSwitch: false
+    // アイテムがスイッチした時のコールバック関数
+});
+*/
+</script>
+</body>
+</html>

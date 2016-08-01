@@ -1,0 +1,69 @@
+$widthXL: 1280px; //PC大
+$widthLG: 1024px; //PC小
+$widthTab: 768px; //タブレット
+$widthSp: 568px; //スマートフォン
+
+@mixin mqXL {
+  //$widthXL（1280px）以上の場合
+  @media (min-width: $widthXL) {
+    @content;
+  }
+}
+@mixin mqLG {
+  //$widthLG（1024px）〜$widthXL-1（1279px）の場合
+  @media (min-width: $widthLG) and (max-width: ($widthXL - 1)) {
+    @content;
+  }
+}
+@mixin tab {
+  //$widthTab（768px）〜$widthLG-1（1023px）の場合
+  @media (min-width: $widthTab) and (max-width: ($widthLG - 1)) {
+    @content;
+  }
+}
+@mixin sp {
+  //$widthTab-1（767px）以下の場合
+  @media (max-width: ($widthTab - 1)) {
+    @content;
+  }
+}
+
+
+
+
+
+// $widthXL: 1280px; //PC大
+// $widthLG: 1024px; //PC小
+// $widthMD: 768px; //タブレット
+// $widthSM: 568px; //スマートフォン
+
+// @mixin mqXL {
+//   //$widthXL（1280px）以上の場合
+//   @media (min-width: $widthXL) {
+//     @content;
+//   }
+// }
+// @mixin mqLG {
+//   //$widthLG（1024px）〜$widthXL-1（1279px）の場合
+//   @media (min-width: $widthLG) and (max-width: ($widthXL - 1)) {
+//     @content;
+//   }
+// }
+// @mixin mqMD {
+//   //$widthMD（768px）〜$widthLG-1（1023px）の場合
+//   @media (min-width: $widthMD) and (max-width: ($widthLG - 1)) {
+//     @content;
+//   }
+// }
+// @mixin mqSM {
+//   //$widthSM（568px）〜$widthMD-1（767px）の場合
+//   @media (min-width: $widthSM) and (max-width: ($widthMD - 1)) {
+//     @content;
+//   }
+// }
+// @mixin mqXS {
+//   //$widthSM-1（567px）以下の場合
+//   @media (max-width: ($widthSM - 1)) {
+//     @content;
+//   }
+// }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>テスト、テス、トで。す</h1>
+<h2>テスト、テス、トで。す</h2>
+<p>テスト、テス、トで。す</p>
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+$('h1,h2,p').each(function() {
+    var arr = $(this).text().split('');
+    for(var i = 0; i < arr.length; i++) {
+        if(arr[i].match(/、|。/)) {
+            arr[i] = '<span class="karning">' + arr[i] + '</span>';
+        }
+    }
+    $(this).html(arr.join(''));
+
+    var tagName = $(this).prop('tagName');
+    var value = tagName === 'H1' ? '-0.5em' : '-0.4em';
+    $(this).find('.karning').css('letter-spacing',value);
+});
+</script>
+</body>
+</html>

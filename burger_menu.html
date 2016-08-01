@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link rel="stylesheet" type="text/css" href="css/burger_menu.css">
+</head>
+<body>
+<header>
+    <div class="burger">
+        <div class="normal"></div>
+        <div class="normal"></div>
+        <div class="normal"></div>
+    </div>
+</header>
+
+<ul class="nav">
+    <li class="nav-list"><a href="#">Sample 1</a></li>
+    <li class="nav-list"><a href="#">Sample 2</a></li>
+    <li class="nav-list"><a href="#">Sample 3</a></li>
+    <li class="nav-list"><a href="#">Sample 4</a></li>
+</ul>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+// navigation style
+var windowH = $(window).height();
+$(".nav").height(windowH);
+
+// burger menu
+var open = false;
+
+$(".burger").click(function(){
+    var $lines = $(this).children("div");
+    var check = $lines.hasClass("normal");
+
+    if(check){
+        $lines.removeClass("normal");
+        $lines.first().addClass("topline");
+        $lines.eq(1).css("display","none");
+        $lines.last().addClass("bottomline");
+    }
+    else{
+        $lines.removeClass().addClass("normal");
+        $lines.eq(1).stop().fadeIn();
+    }
+
+    if(!open){
+        $(".nav").stop().fadeIn();
+        open = true;
+    }
+    else{
+        $(".nav").stop().fadeOut();
+        open = false;
+    }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+<style>
+/*RESET*/
+body,div,p,ul{
+	font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+	margin: 0;
+	padding: 0;
+}
+ul{
+	list-style: none;
+}
+/*STYLE*/
+.carr{
+	width:100%;
+ 	min-height:320px;
+	margin-top:150px;
+	background-color:#eee;
+}
+
+.carr-visual{
+	width:50%;
+	margin:0 0 0 40%;
+	position:relative;
+}
+.carr-visual-wrap{
+	width:400%;
+	overflow:hidden;
+}
+.carr-visual-contents{
+	width:25%;
+	height:320px;
+	float:left;
+}
+
+.carr-sidebar{
+	width:60%;
+	min-height:320px;
+	background-color:#fff;
+	position:absolute;
+	top:0;
+	left:-60%;
+}
+.carr-sidebar-title{
+	width:65%;
+	margin:10% 0 0 10%;
+	color:rgba(0,0,0,0.6);
+	font-size:2rem;
+	line-height:1.2;
+}
+.carr-sidebar-description{
+	width:65%;
+	margin:7% 0 0 10%;
+	color:rgba(0,0,0,0.4);
+	font-size:0.8rem;
+	line-height:1.6;
+}
+
+.carr-sidebar-btn{
+}
+.carr-sidebar-btn > div{
+	width:50px;
+	height:50px;
+	background-color:#ddd;
+	cursor:pointer;
+	position:absolute;
+	top:50%;
+	transform: translateY(-50%);
+}
+	.carr-sidebar-btn > div:hover{
+		background-color:#ebea6a;
+	}
+.left-btn{
+	right:15px;
+}
+.right-btn{
+	right:-65px;
+}
+
+.carr-sidebar-btn > div > p{
+	font-weight:bold;
+	text-align:center;
+	-ms-transform:translateY(50%);
+	transform:translateY(50%);
+}
+
+.anime-title{
+	animation:title 0.8s;
+}
+.anime-description{
+	animation:des 0.8s 0.1s;
+}
+
+@keyframes title{
+	0%{opacity : 1;}
+	0%{transform : translateY(0)}
+	30%{opacity : 0;}
+	40%{transform : translateY(-20px)}
+	50%{transform : translateY(-20px)}
+	50%{opacity : 0;}
+	100%{transform : translateY(0)}
+	100%{opacity : 1;}
+}
+@keyframes des{
+	0%{opacity : 1;}
+	0%{transform : translateY(0)}
+	50%{opacity : 0;}
+	50%{transform : translateY(-20px)}
+	70%{transform : translateY(-20px)}
+	70%{opacity : 0;}
+	100%{transform : translateY(0)}
+	100%{opacity : 1;}
+}
+</style>
+</head>
+<body>
+<div class="carr">
+	<div class="carr-visual">
+		<ul class="carr-visual-wrap">
+			<li class="carr-visual-contents"><img src="./img/a.jpg" alt=""></li>
+			<li class="carr-visual-contents"><img src="./img/b.jpg" alt=""></li>
+			<li class="carr-visual-contents"><img src="./img/c.jpg" alt=""></li>
+			<li class="carr-visual-contents"><img src="./img/d.jpg" alt=""></li>
+		</ul>
+
+		<div class="carr-sidebar">
+			<h3 class="carr-sidebar-title"></h3>
+			<p class="carr-sidebar-description"></p>
+
+			<div class="carr-sidebar-btn">
+				<div class="left-btn"><p>＜</p></div>
+				<div class="right-btn"><p>＞</p></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+var len = $(".carr-visual-contents").length;
+
+var Words = [
+	{
+		title : "Sample Title",
+		description : "sample description"
+	},
+	{
+		title : "Sample Title2",
+		description : "sample description2"
+	},
+	{
+		title : "Sample Title3",
+		description : "sample description3"
+	},
+	{
+		title : "Sample Title4",
+		description : "sample description4"
+	}
+];
+
+//タイトルと説明 / 初期値はWord配列の0番目をセット
+$(".carr-sidebar-title").html(Words[0].title);
+$(".carr-sidebar-description").html(Words[0].description);
+
+
+//ボタン操作
+var move = 0;
+
+$(".right-btn").click(function(){
+	Btn.right();
+});
+
+$(".left-btn").click(function(){
+	Btn.left();
+});
+
+
+//関数群
+var Btn = {
+
+	right : function(){
+		if($(".carr-visual-wrap").is(":animated")){
+			return false;
+		}
+		
+		$(".carr-sidebar-title").removeClass("anime-title");
+		$(".carr-sidebar-description").removeClass("anime-description");
+
+		move += 100;
+		
+		if(move > (len - 1) * 100){
+			move = 0;
+		}
+
+		$(".carr-visual-wrap").stop().animate({"marginLeft" : -move + "%"},700);
+
+		$(".carr-sidebar-title").addClass("anime-title");
+		setTimeout(Anime.carrTitle,400);
+		$(".carr-sidebar-description").addClass("anime-description");
+		setTimeout(Anime.carrDescription,400);
+	},
+
+	left : function(){
+		if($(".carr-visual-wrap").is(":animated")){
+			return false;
+		}
+		
+		$(".carr-sidebar-title").removeClass("anime-title");
+		$(".carr-sidebar-description").removeClass("anime-description");
+
+		move -= 100;
+		
+		if(move < 0){
+			move = (len - 1) * 100;
+		}
+
+		$(".carr-visual-wrap").stop().animate({"marginLeft" : -move + "%"},700);
+
+		$(".carr-sidebar-title").addClass("anime-title");
+		setTimeout(Anime.carrTitle,400);
+		$(".carr-sidebar-description").addClass("anime-description");
+		setTimeout(Anime.carrDescription,400);
+	}
+};
+
+var Anime = {
+
+	carrTitle : function(){
+		$(".carr-sidebar-title").html(Words[move / 100].title);
+	},
+
+	carrDescription : function(){
+		$(".carr-sidebar-description").html(Words[move / 100].description);
+	}
+};
+</script>
+</body>
+</html>

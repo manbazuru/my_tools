@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/zoom.css">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js"></script>
+  <script src="js/enhance.js"></script>
+</head>
+<body>
+<header>
+    <h1>enhance.js 画像のモーダル表示(タッチイベント対応)</h1>
+    <h2>設置の流れ</h2>
+    <ul>
+        <li>zoom.cssを読み込む (enhancejsフォルダ内にある)</li>
+        <li>jQueryとvelocity.jsを読み込む (CDNあり：//cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js)</li>
+        <li>enhance.jsを読み込む (enhancejsフォルダ内にある)</li>
+        <li>img要素にdata-action="zoom"を加える</li>
+    </ul>
+</header>
+<section>
+  <h2>Sample</h2>
+  <figure>
+    <img data-action="zoom" src="http://lorempixel.com/400/200" alt="">
+    <figcaption>これは画像の説明文です</figcaption>
+  </figure>
+  <h2>Sample2</h2>
+  <figure>
+    <img data-action="zoom" src="http://lorempixel.com/400/400" alt="">
+    <figcaption>これは画像の説明文です</figcaption>
+  </figure>
+</section>
+
+<footer>
+<p>参考URL</p>
+<ul>
+  <li><a href="http://coliss.com/articles/build-websites/operation/javascript/jquery-plugin-enhance.html">コリス</a></li>
+</ul>
+</footer>
+</body>
+</html>
